@@ -1,0 +1,49 @@
+*{
+    /*uses the universal selector to remove margin and padding from the window*/
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    /*Hides scroll bars in case something appears outside of the window*/
+    overflow: hidden;
+}
+
+/*I used this video to help me fit my background space image to the full window size https://www.youtube.com/watch?v=FAr4zRhwIRg
+"100vh" alters the images height to the view height of the window */
+#space{
+    height: 100vh;
+    width: 100%;
+    background-image: url("Assets/Images/Space.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+#pad{
+    background-color: red;
+    background-image: url("Assets/Images/Planet1.png");
+    left: 150px;
+    top: 200px;
+}
+
+#bass{
+    background-color: blue;
+    background-image: url("Assets/Images/Planet2.png");
+    left: 50%;
+    top: 50%;
+}
+
+.planet{
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    /*changes each planet element to a circle shape instead of a square, I used this website to learn this:width: https://www.w3schools.com/css/css3_borders.asp;*/
+    border-radius: 50%;
+
+    cursor:grab;
+
+
+}
