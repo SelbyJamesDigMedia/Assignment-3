@@ -17,32 +17,57 @@ body{
     background-image: url("Assets/Images/Space.jpg");
     background-size: cover;
     background-position: center;
+
+    /*I used relative positioning to allow for absolute positioning of the planets within the space image.
+    I learnt about this type of positioning through this website: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Positioning*/
     position: relative;
 }
 
+
+/*I link all the elements to their images using the tags here*/
 #pad{
-    background-color: red;
     background-image: url("Assets/Images/Planet1.png");
-    left: 150px;
-    top: 200px;
+    left: 50%;
+    top: 50%;
 }
 
 #bass{
-    background-color: blue;
     background-image: url("Assets/Images/Planet2.png");
     left: 50%;
     top: 50%;
 }
 
+#drums{
+    background-image: url("Assets/Images/Planet3.png");
+    left: 50%;
+    top: 50%;
+}
+
+#sun{
+    background-image: url("Assets/Images/Sun.png");
+    left: 50%;
+    top: 50%;
+
+    /*I made the sun slightly larger than the other planets to indicate larger control*/
+    width: 200px;
+    height: 200px;
+}
+
 .planet{
+    /*allows for the planets to be placed wherever inside of the space image without affecting the poaition of the other planets*/
     position: absolute;
 
     width: 120px;
     height: 120px;
 
+    /*need to define how the image sits within the planets*/
+    background-size: cover;
+    background-position: center;
+
     /*changes each planet element to a circle shape instead of a square, I used this website to learn this:width: https://www.w3schools.com/css/css3_borders.asp;*/
     border-radius: 50%;
 
+    /*changes the cursor to the grab icon indicating the images are draggable*/
     cursor:grab;
 
 
