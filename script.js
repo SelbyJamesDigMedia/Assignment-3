@@ -3,8 +3,8 @@ const padOriginal = new Audio("Assets/Music/PadOriginal.wav")
 const padReverb = new Audio("Assets/Music/PadReverb.wav");
 const bassOriginal = new Audio("Assets/Music/ReeseOriginal.wav")
 const bassDistorted = new Audio("Assets/Music/ReeseDistorted.wav")
-const drumsOriginal = new Audio("Assets/Music/DrumsDelay.wav")
-const drumsDelay = new Audio("Assets/Music/DrumsOriginal.wav")
+const drumsOriginal = new Audio("Assets/Music/DrumsOriginal.wav")
+const drumsDelay = new Audio("Assets/Music/DrumsDelay.wav")
 
 //I decided to use an array for managing all of the audio files at once instead of writing code for each track individually
 const allAudio = [padOriginal,padReverb,bassOriginal,bassDistorted,drumsOriginal,drumsDelay]
@@ -53,6 +53,7 @@ window.addEventListener("mouseup", () => {
 //I used the following website to gain insight on how to retrieve the x and y values of elements when dragged: https://www.tutorialspoint.com/article/retrieve-the-position-x-y-of-an-html-element
 window.addEventListener("mousemove", (event) => {
     if (!draggedPlanet) return
+    //the -60 allows for the cursor to be centered on the planets when dragging
     draggedPlanet.style.left = event.clientX - 60 + "px"
     draggedPlanet.style.top = event.clientY - 60 + "px"
     updatePlanet(draggedPlanet)
@@ -60,7 +61,7 @@ window.addEventListener("mousemove", (event) => {
 
 //to be able to use the planets coordinates on the screen as a way of altering the effects, volume and speed of the different instruments I added this function which converts the x and y positions into a number between 0 and 1
 function xPercentageConversion(x) {
-    return 1-(x / window.innerWidth)
+    return x / window.innerWidth
 }
 
 function yPercentageConversion(y) {
@@ -89,7 +90,7 @@ function updateAudio(){
 function updatePlanet(planet){
     const x = planet.offsetLeft
     const y = planet.offsetTop
-
+//depending on what tag the planet being dragged has, the corresponding values are altered accordingly
     if(planet.id === "pad"){
         padVolume = yPercentageConversion(y)
         padEffect = xPercentageConversion(x)
@@ -104,9 +105,10 @@ function updatePlanet(planet){
     }
     if(planet.id === "sun"){
         masterVolume = yPercentageConversion(y)
+        //I wanted the user to be able to alter the playback speed from 0.5 to 1.5 speed which is why I use addition instead of multiplication here
         playbackSpeed = 0.5 + xPercentageConversion(x)
-        updateAudio()
     }
+    updateAudio()
 }
 
 updateAudio()
